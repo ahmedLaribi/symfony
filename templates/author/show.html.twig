@@ -1,0 +1,26 @@
+{{nom | upper}}
+{{'&Hello' | lower | trim('&')}}
+{{prenom}}
+
+
+{% set a="hello" %}
+{{a}}
+
+{% for i in 0..9 %}
+{{i}}
+{% endfor %}
+
+
+{% set hour=8 %}
+{% if hour < 12 %}
+<p>bonjour !</p>
+{% elseif hour < 18 %}
+<p>bon apres-midi!</p>
+{% else %}
+<p>bonsoir !</p>
+{% endif %}
+
+<a href="{{path('app_author')}}">lien 1<a/>
+<a href="{{url('app_author')}}">lien 2<a/>
+
+<img src="{{asset('assets/images/7.jpg')}}">
