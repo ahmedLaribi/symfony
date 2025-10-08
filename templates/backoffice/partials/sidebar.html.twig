@@ -1,0 +1,28 @@
+{# templates/backoffice/partials/_sidebar.html.twig #}
+<div class="position-sticky pt-3">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link {{ app.request.get('_route') == 'backoffice_dashboard' ? 'active' }}" 
+                   href="{{ path('backoffice_dashboard') }}">
+                    <i class="fas fa-tachometer-alt me-2"></i>
+                    Tableau de bord
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ app.request.get('_route') starts with 'backoffice_users' ? 'active' }}" 
+                   href="{{ path('backoffice_users') }}">
+                    <i class="fas fa-users me-2"></i>
+                    Utilisateurs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ app.request.get('_route') starts with 'backoffice_products' ? 'active' }}" 
+                   href="{{ path('backoffice_products') }}">
+                    <i class="fas fa-box me-2"></i>
+                    Produits
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

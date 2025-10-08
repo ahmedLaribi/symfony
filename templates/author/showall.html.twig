@@ -1,0 +1,19 @@
+<table>
+<tr>
+<td>username</td>
+<td>email</td>
+<td>action</td>
+</tr>
+
+
+
+
+
+{% for author in list %} 
+<tr>
+<td> {{author.username}} </td>
+<td> {{author.email }} </td>
+<td>update , delete</td>
+</tr>
+{% endfor %}
+</table>
