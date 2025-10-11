@@ -1,19 +1,19 @@
-<table>
+showAll.html.twig: <table>
 <tr>
-<td>username</td>
-<td>email</td>
-<td>action</td>
+   <td>Username</td>
+   <td>Email</td>
+   <td>Actions</td>
 </tr>
-
-
-
-
-
-{% for author in list %} 
+{% for i in list %}
 <tr>
-<td> {{author.username}} </td>
-<td> {{author.email }} </td>
-<td>update , delete</td>
+<td>{{ i.username}}</td>
+<td>{{i.email}} </td>
+<td>
+ <a href="{{path('deleteauthor',{'id':i.id})}}">delete</a> {# path or url  #}
+ <a href="">show</a>
+ <a href="">Update</a>
+ 
 </tr>
 {% endfor %}
 </table>
+<a href="{{path('addform')}}">Ajouter un auteur</a>
