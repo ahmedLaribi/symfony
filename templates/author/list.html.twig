@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Auteurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .flash-messages {
+            margin-bottom: 15px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .add-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-btn:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-btn {
+            margin-right: 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+        }
+        .show-btn { background-color: #17a2b8; }
+        .edit-btn { background-color: #ffc107; }
+        .delete-btn { background-color: #dc3545; }
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        .happy-message {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Liste des Auteurs</h1>
+
+    {# Messages flash #}
+    {% for message in app.flashes('success') %}
+        <div class="flash-messages">
+            <div class="alert alert-success">
+                 {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    {# Message positif du service HappyQuote #}
+    {% if happyMessage is defined %}
+        <div class="happy-message">{{ happyMessage }}</div>
+    {% endif %}
+
+    <a href="{{ path('app_author_add') }}" class="add-btn">Ajouter un Auteur</a>
+
+    {% if authors is empty %}
+        <div class="no-data">
+             Aucun auteur trouvé. Cliquez sur "Ajouter un Auteur" pour commencer.
+        </div>
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Nombre de livres</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.username }}</td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.nbBooks ?? 0 }}</td>
+                    <td>
+                        <a href="{{ path('app_author_show', {'id': author.id}) }}" class="action-btn show-btn">
+                            Voir
+                        </a>
+                        <a href="{{ path('app_author_edit', {'id': author.id}) }}" class="action-btn edit-btn">
+                            Modifier
+                        </a>
+                        <a href="{{ path('app_author_delete', {'id': author.id}) }}"
+                           class="action-btn delete-btn"
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet auteur ?')">
+                            Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+</body>
+</html>

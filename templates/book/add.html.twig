@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Livre</title>
+    
+</head>
+<body>
+<div class="form-container">
+    <h1> Ajouter un Livre</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.publicationDate) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_book_list') }}" class="back-link">
+         Retour à la liste
+    </a>
+</div>
+</body>
+</html>

@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter un Auteur</title>
+    <title>Modifier un Auteur</title>
     
 </head>
 <body>
 <div class="form-container">
-    <h1> Ajouter un Auteur</h1>
+    <h1> Modifier l'Auteur</h1>
+    <p style="text-align: center; color: #7f8c8d; margin-bottom: 20px;">
+        Modification de: <strong>{{ author.username }}</strong>
+    </p>
 
     {{ form_start(form) }}
     {{ form_row(form.username) }}
     {{ form_row(form.email) }}
     {{ form_row(form.nb_books) }}
-    {{ form_row(form.submit) }}
+    {{ form_row(form.submit, {'label': 'Mettre à jour'}) }}
     {{ form_end(form) }}
 
     <a href="{{ path('app_author_list') }}" class="back-link">

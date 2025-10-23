@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Livre</title>
+    
+</head>
+<body>
+<div class="card">
+    <div class="card-header">
+        <h1> {{ book.title }}</h1>
+    </div>
+    <div class="card-body">
+        <div class="info-row">
+            <strong>Référence :</strong>
+            <span>{{ book.ref }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Titre :</strong>
+            <span>{{ book.title }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Catégorie :</strong>
+            <span>{{ book.category }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Date de Publication :</strong>
+            <span>{{ book.publicationDate|date('d/m/Y') }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Auteur :</strong>
+            <span>{{ book.author.username }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Email de l'Auteur :</strong>
+            <span>{{ book.author.email }}</span>
+        </div>
+
+        <div class="info-row">
+            <strong>Statut :</strong>
+            <span>
+                    {% if book.published %}
+                        <span > Publié</span>
+                    {% else %}
+                        <span > Non publié</span>
+                    {% endif %}
+                </span>
+        </div>
+
+        <div class="actions">
+            <a href="{{ path('app_book_list') }}" class="back-link">
+                 Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

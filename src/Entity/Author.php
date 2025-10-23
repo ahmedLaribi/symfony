@@ -21,6 +21,9 @@ class Author
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nb_books = null;
+
     /**
      * @var Collection<int, Book>
      */
@@ -57,6 +60,18 @@ class Author
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getNbBooks(): ?int
+    {
+        return $this->nb_books;
+    }
+
+    public function setNbBooks(?int $nb_books): static
+    {
+        $this->nb_books = $nb_books;
 
         return $this;
     }

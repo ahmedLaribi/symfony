@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Livres</title>
+    
+</head>
+<body>
+<div class="container">
+    <h1> Liste des Livres</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="flash-messages">
+            <div class="alert alert-success">
+                 {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>{{ publishedCount }}</h3>
+            <p>Livres Publiés</p>
+        </div>
+        <div class="stat-box">
+            <h3>{{ unpublishedCount }}</h3>
+            <p>Livres Non Publiés</p>
+        </div>
+    </div>
+
+    <a href="{{ path('app_book_add') }}" class="add-btn"> Ajouter un Livre</a>
+    <a href="{{ path('app_author_list') }}" class="add-btn" style="background: #3498db;"> Gérer les Auteurs</a>
+
+    {% if books is empty %}
+        <div class="no-data">
+             Aucun livre publié trouvé. Cliquez sur "Ajouter un Livre" pour commencer.
+        </div>
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Réf</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Date Publication</th>
+                <th>Auteur</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.ref }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.category }}</td>
+                    <td>{{ book.publicationDate|date('d/m/Y') }}</td>
+                    <td>{{ book.author.username }}</td>
+                    <td>
+                        <a href="{{ path('app_book_show', {'ref': book.ref}) }}" class="action-btn show-btn">
+                             Voir
+                        </a>
+                        <a href="{{ path('app_book_edit', {'ref': book.ref}) }}" class="action-btn edit-btn">
+                             Modifier
+                        </a>
+                        <a href="{{ path('app_book_delete', {'ref': book.ref}) }}"
+                           class="action-btn delete-btn"
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?')">
+                             Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+</body>
+</html>

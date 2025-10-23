@@ -16,6 +16,20 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
+ public function countRomanceBooks(): int
+{
+    $entityManager = $this->getEntityManager();
+
+    $query = $entityManager->createQuery(
+        'SELECT COUNT(b.ref)
+         FROM App\Entity\Book b
+         WHERE b.category = :category'
+    )->setParameter('category', 'Romance');
+
+    return $query->getSingleScalarResult();
+}
+
+
     //    /**
     //     * @return Book[] Returns an array of Book objects
     //     */
